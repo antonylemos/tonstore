@@ -1,9 +1,16 @@
-import { Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+
+const styles = StyleSheet.create({
+  text: {
+    fontFamily: 'Satoshi-Bold',
+    fontSize: 16,
+  },
+});
 
 export function App() {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Welcome to Tonstore!</Text>
+      <Text style={styles.text}>Welcome to Tonstore!</Text>
     </View>
   );
 }
