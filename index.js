@@ -1,3 +1,4 @@
+import '@ui/styles';
 import { AppRegistry } from 'react-native';
 
 import { App } from './App';
