@@ -3,7 +3,7 @@ import { useStyles } from 'react-native-unistyles';
 import { stylesheet } from './styles';
 
 export function useHome() {
-  const { styles } = useStyles(stylesheet);
+  const stylesHook = useStyles(stylesheet);
 
-  return { styles };
+  return { ...stylesHook };
 }
