@@ -1,5 +1,6 @@
-import { spacing } from '../tokens';
+import { font, spacing } from '../tokens';
 
 export const baseTheme = {
-  ...spacing,
+  font,
+  spacing,
 };
