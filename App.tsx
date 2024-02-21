@@ -1,26 +1,22 @@
-import { Text, View } from 'react-native';
-import { createStyleSheet, useStyles } from 'react-native-unistyles';
+import { StatusBar, StatusBarStyle } from 'react-native';
+import { UnistylesRuntime, useStyles } from 'react-native-unistyles';
 
-const stylesheet = createStyleSheet((theme) => ({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: theme.colors.background,
-  },
-  text: {
-    fontFamily: 'Satoshi-Bold',
-    fontSize: 16,
-    color: theme.colors.typography,
-  },
-}));
+import { Providers } from '@app/providers';
+import { Routes } from '@app/router';
 
 export function App() {
-  const { styles } = useStyles(stylesheet);
+  const { theme } = useStyles();
+  const barStyle =
+    `${UnistylesRuntime.themeName === 'dark' ? 'light' : 'dark'}-content` as StatusBarStyle;
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Welcome to Tonstore!</Text>
-    </View>
+    <Providers>
+      <StatusBar
+        backgroundColor={theme.colors.background}
+        barStyle={barStyle}
+      />
+
+      <Routes />
+    </Providers>
   );
 }
