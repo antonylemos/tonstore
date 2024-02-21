@@ -43,4 +43,6 @@ jobs:
         uses: gradle/gradle-build-action@v3
 
       - name: Build Android
-        run: cd android && ./gradlew build
+        run: |
+          cd android
+          ./gradlew build
