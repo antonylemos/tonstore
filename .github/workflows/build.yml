@@ -12,27 +12,18 @@ jobs:
 
   install-dependencies:
     runs-on: self-hosted
+    needs: init
     steps:
       - name: Install dependencies
         run: |
           yarn
-          tar -czf node-modules.tar.gz node_modules/
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: node-modules
-          path: node-modules.tar.gz
 
   lint:
     runs-on: self-hosted
     needs: install-dependencies
     steps:
-      - uses: actions/download-artifact@v4
-        with:
-          name: node_modules
-      - run: |
-          tar -xzf node-modules.tar.gz node_modules/
+      - name: Check lint
+        run: |
           yarn eslint '**/*.{ts,tsx}'
 
   # build:
