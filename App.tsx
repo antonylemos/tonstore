@@ -1,9 +1,20 @@
-import { Text, View } from 'react-native';
+import { StatusBar, StatusBarStyle } from 'react-native';
+import { useStyles } from 'react-native-unistyles';
+
+import { Providers } from '@app/providers';
+import { Routes } from '@app/router';
+import { isDarkTheme } from '@ui/styles/utils';
 
 export function App() {
+  const { theme } = useStyles();
+  const barStyle =
+    `${isDarkTheme ? 'light' : 'dark'}-content` as StatusBarStyle;
+
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Welcome to Tonstore!</Text>
-    </View>
+    <Providers>
+      <StatusBar backgroundColor={theme.colors.surface} barStyle={barStyle} />
+
+      <Routes />
+    </Providers>
   );
 }
