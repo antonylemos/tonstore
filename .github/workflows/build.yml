@@ -26,6 +26,14 @@ jobs:
         run: |
           yarn lint
 
+  coverage:
+    runs-on: self-hosted
+    needs: install-dependencies
+    steps:
+      - name: Test coverage
+        run: |
+          yarn coverage
+
   build:
     needs: install-dependencies
     runs-on: self-hosted
