@@ -1,27 +1,37 @@
-import { Plus } from 'lucide-react-native';
+import { Plus, Trash } from 'lucide-react-native';
 import { Image, Pressable, View } from 'react-native';
 import { useStyles } from 'react-native-unistyles';
-
-import { ICountry } from '@app/types';
 
 import { Typography } from '..';
 
 import { stylesheet } from './styles';
+import { ICountryCard } from './types';
 
-export function CountryCard({ flags, name }: ICountry) {
+export function CountryCard({ action, country, type = 'add' }: ICountryCard) {
   const { styles, theme } = useStyles(stylesheet);
 
   return (
-    <View key={name.common} style={styles.card}>
-      <Image source={{ uri: flags.png }} style={styles.flag} alt={flags.alt} />
+    <View key={country.name.common} style={styles.card}>
+      <Image
+        source={{ uri: country.flags.png }}
+        style={styles.flag}
+        alt={country.flags.alt}
+      />
       <Pressable
         style={styles.button}
         android_ripple={{
           color: theme.colors.surface,
         }}
+        onPress={() => action(country)}
       >
-        <Plus size={24} color={theme.colors.surface} />
-        <Typography type="span">Adicionar</Typography>
+        {type === 'add' ? (
+          <Plus size={24} color={theme.colors.surface} />
+        ) : (
+          <Trash size={24} color={theme.colors.surface} />
+        )}
+        <Typography type="span">
+          {type === 'add' ? 'Adicionar' : 'Remover'}
+        </Typography>
       </Pressable>
     </View>
   );

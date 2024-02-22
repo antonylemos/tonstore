@@ -16,7 +16,8 @@ import { useHome } from './useHome';
 export function Home() {
   const { styles, theme } = useStyles(stylesheet);
 
-  const { countries } = useHome();
+  const { countries, navigateToCart, addCountryToCart, totalCountriesInCart } =
+    useHome();
 
   const themeIcon = isDarkTheme ? (
     <Moon size={24} color={theme.colors.action} />
@@ -34,8 +35,9 @@ export function Home() {
           <Typography type="title">Tonstore</Typography>
         </View>
 
-        <IconPressable>
+        <IconPressable onPress={navigateToCart}>
           <ShoppingCart size={24} color={theme.colors.action} />
+          <Typography type="title">{totalCountriesInCart}</Typography>
         </IconPressable>
       </Header>
 
@@ -43,7 +45,9 @@ export function Home() {
         data={countries}
         numColumns={2}
         estimatedItemSize={150}
-        renderItem={({ item: country }) => <CountryCard {...country} />}
+        renderItem={({ item: country }) => (
+          <CountryCard country={country} action={addCountryToCart} />
+        )}
         contentContainerStyle={styles.countriesList}
       />
     </View>
