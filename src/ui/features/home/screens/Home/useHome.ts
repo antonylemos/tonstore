@@ -1,9 +1,7 @@
-import { useStyles } from 'react-native-unistyles';
-
-import { stylesheet } from './styles';
+import { useCountries } from '../../hooks';
 
 export function useHome() {
-  const stylesHook = useStyles(stylesheet);
+  const { countries, isLoading } = useCountries();
 
-  return { ...stylesHook };
+  return { countries, isLoading };
 }

@@ -3,27 +3,19 @@ import { createStyleSheet } from 'react-native-unistyles';
 export const stylesheet = createStyleSheet((theme) => ({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: theme.colors.background,
-    gap: 24,
+    backgroundColor: theme.colors.surface,
   },
   greeting: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    gap: theme.spacing.xsm,
   },
   emotion: {
     width: 20,
     height: 20,
   },
-  button: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-    paddingHorizontal: theme.spacing.lg,
-    paddingVertical: theme.spacing.sm,
-    backgroundColor: theme.colors.primary,
-    borderRadius: theme.spacing.xsm,
+  countriesList: {
+    paddingHorizontal: theme.spacing.xsm,
+    paddingVertical: theme.spacing.lg,
   },
 }));
