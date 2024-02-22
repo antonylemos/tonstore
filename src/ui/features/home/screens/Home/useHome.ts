@@ -1,7 +1,24 @@
+import { useNavigation } from '@react-navigation/native';
+import { useCallback } from 'react';
+
+import { useCartStore } from '@app/stores';
+
 import { useCountries } from '../../hooks';
 
 export function useHome() {
-  const { countries, isLoading } = useCountries();
+  const { navigate } = useNavigation();
+  const { countries } = useCountries();
+  const { addCountryToCart, countries: storageCountries } = useCartStore();
 
-  return { countries, isLoading };
+  const navigateToCart = useCallback(() => {
+    navigate('cart' as never);
+  }, [navigate]);
+
+  return {
+    countries,
+    storageCountries,
+    totalCountriesInCart: storageCountries.length,
+    navigateToCart,
+    addCountryToCart,
+  };
 }
